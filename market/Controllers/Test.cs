@@ -31,9 +31,7 @@ namespace market.Controllers
         {
             try
             {
-                Result result = calculator.getBuingItem();
-                Console.WriteLine(result);
-                return StatusCode(200, result);
+                return StatusCode(200, "not implemented");
             }
             catch (Exception e)
             {

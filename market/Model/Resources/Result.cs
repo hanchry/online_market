@@ -8,13 +8,13 @@ namespace Algorithm.Model
         public Item Sell { get; set; }
 
         public int Difference() {
-            return Buy.buy_price_min - Sell.sell_price_min;
+            return Sell.buy_price_max - Buy.sell_price_min;
         }
         public int Tier { get; set; }
 
         public override string ToString()
         {
-            return Buy.item_id + " " + Buy.city + " " + Buy.buy_price_min + " " + Sell.item_id + " " + Sell.city + " " + Sell.sell_price_min;
+            return Buy.item_id + " " + Buy.city + " " + Buy.sell_price_min + " " + Sell.item_id + " " + Sell.city + " " + Sell.buy_price_max;
         }
     }
 }
