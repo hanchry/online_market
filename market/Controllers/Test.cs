@@ -31,7 +31,7 @@ namespace market.Controllers
         {
             try
             {
-                return StatusCode(200, "not implemented");
+                return StatusCode(200, calculator.getBestOf(4, true));
             }
             catch (Exception e)
             {

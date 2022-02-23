@@ -37,7 +37,10 @@ namespace market
             services.AddDbContextFactory<AlbionMarketContext>(opt => opt.UseNpgsql(@"User ID = ozohxixh; Password = IUQZq23Jd3_OE8RA5Ry9NTiEIeOfDhAR; Server = abul.db.elephantsql.com; Database = ozohxixh"));
 
             services.AddTransient<IItemIdReader, ItemReader>();
+            services.AddTransient<ICityReader, CityReader>();
+            services.AddTransient<AlbionData>();
             services.AddSingleton<Calculator>();
+            services.AddTransient<Diference>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -15,14 +15,18 @@ namespace market.Model
 
         private AlbionData data;
         private Diference _diference;
-        public Calculator(IItemIdReader itemReader)
+        public Calculator(IItemIdReader itemReader, ICityReader cityReader)
         {
             data = new AlbionData(itemReader);
-            Thread newThread = new Thread(new ThreadStart(data.BiggestDifference));
+            _diference = new Diference(data, cityReader);
+            Thread newThread = new Thread(data.BiggestDifference);
             newThread.Start();
-            _diference = new Diference(data);
         }
-        
+
+        public Result getBestOf(int tier, bool isSafe)
+        {
+            return _diference.HighestDiferenceOf(tier, isSafe);
+        }
 
         
         

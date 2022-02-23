@@ -6,38 +6,38 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database.Persistance.Readers.Implemented
 {
-    public class ItemReader:IItemIdReader
+    public class CityReader : ICityReader
     {
         private readonly IDbContextFactory<AlbionMarketContext> _contextFactory;
         
-        public ItemReader(IDbContextFactory<AlbionMarketContext> contextFactory)
+        public CityReader(IDbContextFactory<AlbionMarketContext> contextFactory)
         {
             _contextFactory = contextFactory;
         }
         
-        public async Task<IList<ItemId>> GetIdsOfTier(int tier)
+        public async Task<IList<City>> GetSafeCities(bool isSafe)
         {
             using (var context = _contextFactory.CreateDbContext())
             {
-                return await context.Ids.Where(x => x.Tier == tier).ToListAsync();
+                return await context.Cities.Where(x=> x.IsSafe == isSafe).ToListAsync();
             }
         }
 
-        public async Task<IList<ItemId>> GetIds()
+        public async Task<IList<City>> GetCities()
         {
             using (var context = _contextFactory.CreateDbContext())
             {
-                return await context.Ids.ToListAsync();
+                return await context.Cities.ToListAsync();
             }
         }
 
-        public async Task<ItemId> AddId(ItemId itemId)
+        public async Task<City> AddCity(City city)
         {
             using (var context = _contextFactory.CreateDbContext())
             {
-                context.Ids.Add(itemId);
+                context.Cities.Add(city);
                 await context.SaveChangesAsync();
-                return itemId;
+                return city;
             }
         }
     }
