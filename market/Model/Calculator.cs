@@ -14,11 +14,13 @@ namespace market.Model
     {
 
         private AlbionData data;
+        private Diference _diference;
         public Calculator(IItemIdReader itemReader)
         {
             data = new AlbionData(itemReader);
             Thread newThread = new Thread(new ThreadStart(data.BiggestDifference));
             newThread.Start();
+            _diference = new Diference(data);
         }
         
 
